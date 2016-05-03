@@ -7,9 +7,9 @@
 //  Copyright © 2016 Валерий Карачаков. All rights reserved.
 //
 #ifdef __WIN32 
-#include "xs_map\core_map_gl\xs_main_gl.h"
+#include "core_map_gl\xs_main_gl.h"
 #else
-#include "xs_nstu_map/xseruif_mapi.h"
+#include "xseruif_mapi.h"
 #endif
 
 #include <iostream>
