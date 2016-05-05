@@ -25,6 +25,7 @@ public:
 	int type;
 	float scale;
 	unsigned int color;
+    string legend_name;
 };
 
 struct XSWallType
@@ -186,7 +187,7 @@ struct XSMapTypes
     void read_backgrounds()
     {
         xs_openfile(XS_FILE_BACKGROUNDS);
-        while (xs_file_readline_split())
+        while (xs_file_readline_split(3))
         {
             XSBackgroundType bt;
             bt.id = xs_fileline_read_next_value_i();
@@ -207,6 +208,10 @@ struct XSMapTypes
                     bt.scale = xs_fileline_read_next_value_f();
             }
             else throw xs_error_invalid_key(p);
+            bt.legend_name="[NO LEGEND NAME]";
+            if (xs_fileline_next_value_exist())
+                bt.legend_name = xs_fileline_read_next_value_s();
+                
             backgrounds.insert(pair<int,XSBackgroundType>(bt.id,bt));
         }
         xs_closefile();

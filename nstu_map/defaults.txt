@@ -1,0 +1,22 @@
+#defaults
+
+#version <ver>
+#picture_extensions <ext1> <ext2> <ext3>
+#door <width> <heigh>
+#wall <width>
+
+#room_wall <wall_id>
+#scale <f> //recommending more than <?>, when coord in meters
+#background <back_id>
+ 
+version alpha_4.2
+picture_extensions jpg jpeg png
+
+door 1 0.25
+wall 0.25
+scale 12
+room_wall 2
+background 0
+zoomstep 0.5
+
+selectroom 1.5 127:127:127

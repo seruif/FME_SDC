@@ -1,3 +1,5 @@
+#include <cmath>
+
 struct XSVectorF
 {
 public:
@@ -110,17 +112,23 @@ public:
 		Y *= f.Y;
 	}
 
-	bool operator < (const XSVectorF& f)
-	{
-		if (X < f.X || Y < f.Y) return true;
-		return false;
-	}
-
-	bool operator > (const XSVectorF& f)
-	{
-		if (X > f.X || Y > f.Y) return true;
-		return false;
-	}
+//	bool operator < (const XSVectorF& f)
+//	{
+//        float d = sqrt(X*X+Y*Y);
+//        float df = sqrt(f.X*f.X+f.Y*f.Y);
+//		if (d < df)
+//            return true;
+//		return false;
+//	}
+//
+//	bool operator > (const XSVectorF& f)
+//	{
+//        float d = sqrt(X*X+Y*Y);
+//        float df = sqrt(f.X*f.X+f.Y*f.Y);
+//        if (d > df)
+//            return true;
+//        return false;
+//	}
 
 	XSVectorF convert_to_real_coord(XSVectorF v1, XSVectorF v2)
 	{

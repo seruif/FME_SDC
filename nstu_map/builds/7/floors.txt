@@ -1,0 +1,7 @@
+#floors; id = num of floor, first is 1, 0 - underground.
+#<id> <level> <name>
+
+
+1 1 Первый этаж
+
+2 2 Второй этаж (требуются исправления)

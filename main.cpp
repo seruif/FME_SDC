@@ -69,7 +69,7 @@ int main(int argc, const char * argv[])
 
     return 0;
     #else
-    mapi_set_map_folder("/Users/seruif/Documents/nstu_map");
+    mapi_set_map_folder("/Users/Seruif/Documents/Xcode_Projects/NSTU_MAP_console/NSTU_MAP_console/xs_nstu_map/nstu_map");
     string err;
     try
     {

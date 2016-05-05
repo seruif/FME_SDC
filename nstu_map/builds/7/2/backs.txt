@@ -1,0 +1,41 @@
+#background (rectangle) m - mosaic, s - stretch, z - depth
+#coord - two float value: x y
+
+#area <back_id> <coord_1> <coord_2> [[z] {[<m|s> [scale]]}]
+#larea <back_id> <coord_1> <coord_2> [[z] {[<m|s> [scale]]}]
+#room <back_id> <room_id> [[z] {[<m|s> [scale]]}]
+
+#services area
+area 4 24.87 8.63 31.27 15
+
+room 5 1
+room 5 3
+room 5 207
+room 5 208
+
+room 5 211
+room 5 212
+room 5 213
+room 5 214
+room 5 215
+room 5 216
+
+room 5 219
+room 5 218
+room 5 217
+room 5 21601
+room 5 21602
+
+room 7 200
+room 7 201
+room 7 202
+room 7 203
+room 7 20301
+room 7 20302
+
+room 7 205
+room 7 204
+
+room 7 -3
+room 6 -4
+room 6 -5

@@ -589,7 +589,7 @@ struct XSFloor
 			{
 
 				string name = xs_fileline_read_next_value_s();
-				rooms[rid].info = "N/A";
+				rooms[rid].info = "[NO INFO]";
 				if (xs_fileline_prm_is(XS_PRM_ROOM))
 					rooms[rid].name = name;
 				else
@@ -630,8 +630,8 @@ struct XSFloor
 		}
 		XSVectorF floor_size_c1;
 		XSVectorF floor_size_c2;
-		floor_size_c1.set(INT32_MAX, INT32_MAX);
-		floor_size_c2.set(INT32_MIN, INT32_MIN);
+		floor_size_c1.set(INT16_MAX, INT16_MAX);
+		floor_size_c2.set(INT16_MIN, INT16_MIN);
 		for (vector<XSWall>::iterator i = walls.begin(); i != walls.end(); i++)
 		{
 			i->coord1 += build_pos;
@@ -640,11 +640,17 @@ struct XSFloor
 			i->coord1 *= map_scale;
 			i->coord2 *= map_scale;
 
-			if (i->coord1 < floor_size_c1)
-				floor_size_c1 = i->coord1;
+            if (i->coord1.X < floor_size_c1.X)
+                floor_size_c1.X = i->coord1.X;
+            
+            if (i->coord1.Y < floor_size_c1.Y)
+                floor_size_c1.Y = i->coord1.Y;
 
-			if (i->coord1 > floor_size_c2)
-				floor_size_c2 = i->coord1;
+            if (i->coord2.X > floor_size_c2.X)
+                floor_size_c2.X = i->coord2.X;
+            
+            if (i->coord2.Y > floor_size_c2.Y)
+                floor_size_c2.Y = i->coord2.Y;
 
 			i->width *= map_scale;
 		}
@@ -733,12 +739,15 @@ public:
 	string name;
 	map<int, XSFloor> floors;
 	XSVectorF coord;
+    XSVectorF build_size;
 
 	void init(int bid, string name, XSVectorF coord)
 	{
 		this->id = bid;
 		this->name = name;
 		this->coord = coord;
+        build_size.X = INT32_MIN;
+        build_size.Y = INT32_MIN;
 	}
 
 	void read()
@@ -766,7 +775,14 @@ public:
 			XSFloor f = v[i];
 			f.read();
 			floors.insert(pair<int, XSFloor>(f.level, f));
+            
+            if (build_size.Y < f.floor_size.Y)
+                build_size.Y = f.floor_size.Y;
+            
+            if (build_size.X < f.floor_size.X)
+                build_size.X = f.floor_size.X;
 		}
+        coord*=xs_map_types.map_scale;
 	}
 };
 

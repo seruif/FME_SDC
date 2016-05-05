@@ -1,0 +1,27 @@
+#rooms name;
+#room <id> <name>
+#fixtext <room_id> <h{|v}> <coord>
+
+#{logo info; coords from 0 to 1 of room size, def coords - center}
+#{logo <room_id> <logo_id> <coord_x|def> <coord_y|def> [scale]}
+room 105 105
+room 106 106
+room 103 103
+room 104 104
+room 108 108
+room 110 110
+room 111 111
+room 112 112
+room 107 107
+
+room 1 1-ая поточка
+#info 1 This is big stream audience where you can sleep
+room 2 2-ая поточка
+
+room -1 Столовая
+room -2 Библиотека
+room -3 М
+#info -3 Man toilet
+room -4 Ж
+#info -4 Woman toilet
+room -5 Буфет

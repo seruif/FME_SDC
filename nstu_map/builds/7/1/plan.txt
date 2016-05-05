@@ -1,0 +1,200 @@
+#coord - two float value: x y
+
+#v - vertical
+#h - horizontal
+#a - angle
+
+#prefixs
+#l - length
+#p - poly
+
+#-------ROOMS-------
+#rect - adding 4 walls (not recommended); 
+#area - without adding walls
+#larea - coord2 as lengths
+#room <id> <rect <wall_id|def> | area | larea> <coord_1> <coord_2> [fixtext <coord_ofroom>]
+
+#list areas of rooms 
+#roomlist <any_int> <coord> <heigh> <v|h> <count>
+#roomnext list
+#roomnext <id> <width> [fixtext <coord_ofroom>]
+#skip <width>
+
+#-------WALLS-------
+#lwall -> coord2 = coord + length
+#doornext - array of position of doors (position begin at <coord>), below lines of doornext
+#doornext list - list of doornext data. count of doornext = doornext array in lwall
+
+#lwall <type_id> <width|def> <coord> <v|h{|a <angle>}> <length> [doornext [[wall_pos]]]	
+#doornext <type_id> <width|def> <high|def>
+
+
+#cwall - simple wall with 2 coords
+#cwall <type_id> <width|def> <coord_1> <coord_2> {[doornext [[wall_pos]]}
+
+#pwall - poly walls. from coord to next coord
+#pwall <type_id> <width|def> <coord_1> [[<coord>]]
+
+#plwall = pwall + lwall
+#plwall <type_id> <width|def> <coord> [[<v|h{|a <angle>}> <length>]]
+
+#listwall - build list of wall. <length> - length of wall
+#like | 	| | | ("v" parameter)
+#coord^	 +offset^
+#listwall <type_id> <width|def> <coord> <v|h> <length> [[<offset>]]
+
+#OLD | NOT RECOMMENED
+#door; def = default, v = vertical, h = horizontal, a = angle (radians)
+#door <type_id> <coord> <v|h{|a <angle>}> <width|def> <high|def>
+
+#--------------------------
+#stair <strip_wall_id> <coord1> <coord2> <v|h> [full]
+#--------------------------
+roomlist 0 24.77 18.60 6.2 h 5
+roomnext 105 12.57
+roomnext 106 12.05
+skip 5.71
+roomnext 107 2.62
+roomnext 108 9.11 fixtext 0.4 def
+endnext
+
+roomlist 0 0 24 11.5 v 2
+roomnext 1 20.4
+roomnext 103 3.6
+endnext
+
+roomlist 0 18.41 32.75 13 v 2
+roomnext 104 4.05
+roomnext 2 11.5
+endnext
+
+roomlist 0 31.27 8.63 6.33 h 5
+roomnext -4 2.86
+roomnext 112 5.83
+roomnext 111 2.85
+roomnext 110 5.85
+roomnext -1 12.5
+endnext
+
+room -2 area 0 0 11.5 5.58
+room -5 larea 18.34 0 6.48 5.68
+room -3 larea 0 21 11.63 2.98
+
+cwall 1 def 0 0 11.55 0
+#cwall 1 def 0 0 0 15.9
+cwall 2 def 0 5.61 5.96 5.61
+cwall 1 def 0 15.9 5.68 15.9
+cwall 1 def 5.95 15.9 5.95 20.85
+#cwall 1 def 11.61 15.9 11.61 48.23
+cwall 1 def 0 20.85 11.33 20.85
+cwall 1 def 0 20.85 0 48.23
+cwall 1 def 0 23.81 11.33 23.81
+cwall 1 def 0 44.46 11.35 44.46
+cwall 1 def 0 48.23 31.36 48.23
+#cwall 1 def 18.31 48.23 18.31 32.51
+cwall 1 def 18.31 32.51 31.36 32.51
+cwall 1 def 31.36 32.51 31.36 48.23
+cwall 1 def 18.31 36.56 31.36 36.56
+cwall 1 def 24.81 32.51 24.81 24.72
+#cwall 1 def 11.55 0 11.55 5.61 
+#cwall 1 def 12.55 2.21 18.34 2.21
+cwall 1 def 18.34 0 18.34 8.77
+cwall 1 def 18.35 0 24.87 0
+cwall 1 def 24.87 0 24.87 5.64
+cwall 1 def 24.87 5.64 31.27 5.64
+cwall 1 def 31.27 5.64 31.27 8.63
+cwall 1 def 31.27 8.63 66.81 8.63
+cwall 1 def 66.81 8.63 66.81 24.83
+cwall 1 def 24.81 24.83 66.81 24.83
+
+lwall 2 def 51.66 18.58 v 4.8
+
+lwall 2 def 63.76 21.4 v 3.43
+lwall 2 def 63.76 21.4 h 3.05 doornext 1.5
+doornext 1 def def
+
+lwall 2 def 57.7 18.46 v 6.37
+lwall 2 def 55.08 18.46 v 6.37
+lwall 2 def 49.37 18.46 v 6.37
+lwall 2 def 37.32 18.46 v 6.37
+lwall 2 def 24.75 18.46 v 6.37
+
+lwall 2 def 24.81 18.53 h 42 doornext 10.5 18.57 25.62 31.33 33.95
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+
+cwall 2 def 61.38 18.53 61.38 14.89
+
+lwall 2 def 24.75 14.89 v 3.61 doornext 1.86
+doornext 1.5 def def
+
+lwall 2 def 24.75 14.89 h 36.57 doornext 1 2.2 5.5 8 13.8 16.8 20 27.5
+doornext 1 0.7 def
+doornext 1 0.7 def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+
+walllist 2 def 24.75 14.89 v -0.75 1.5 1.65
+lwall 2 def 24.75 14.14 h 3.2
+
+pwall 2 def 27.98 8.63 31.27 8.63 31.27 14.89
+lwall 2 def 27.98 12.84 h 3.21 doornext 1.6
+doornext 1 def def
+
+pwall 1 def 24.87 8.63 27.98 8.63 27.98 12.84 24.87 12.84
+cwall 1 def 24.87 10.74 27.87 10.74
+lwall 1 def 24.87 8.63 v 6.26 doornext 1.05 3.15
+doornext 1 def 0.5
+doornext 1 def 0.5
+
+walllist 2 def 31.27 8.63 v 6.33 2.86 5.83 2.85 5.85
+plwall 3 def 24.81 18.53 h -5.98 v 13.39
+
+lwall 3 def 61.38 8.63 v 6.33
+
+lwall 1 def 11.61 15.9 v 32.33 doornext 5.95 25.8 29.5
+doornext 1 def 0.5
+doornext 1 def 0.5
+doornext 1 def 0.5
+
+lwall 1 def 18.31 32.51 v 15.72 doornext 1.2 8
+doornext 1 def 0.5
+doornext 1 def 0.5
+
+lwall 2 def 8.7 20.85 v 2.96 doornext 0.9
+doornext 1 def def
+
+lwall 3 def 18.34 5.64 h 6.53
+
+lwall 1 def 11.55 2.21 h 6.79 doornext 2 4.9
+doornext 1 1.5 0.5
+doornext 1 1.5 0.5
+
+lwall 2 def 11.55 5.61 h 6.79 doornext 2 4.9
+doornext 1 1.5 def
+doornext 1 1.5 def
+
+lwall 2 def 11.55 8.77 h 6.79 doornext 2 4.9
+doornext 1 1.5 def
+doornext 1 1.5 def
+
+lwall 1 def 11.55 0 v 8.77 doornext 4.3
+doornext 1 def 0.5
+
+plwall 2 def 5.96 5.61 v 3.3 h 5.5 v 7.5
+
+stair 4 24.83 5.83 31.16 8.66 h
+stair 4 51.66 18.66 55 24.91 v
+stair 4 13.5 33.75 16.66 40.33 v full
+
+cwall 2 def 0 8.9 5.96 8.9
+lwall 1 def 0 0 v 15.9 doornext 7.2
+doornext 1 1.5 def
+stair 4 0 5.61 5.96 8.9 h

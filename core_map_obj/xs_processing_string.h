@@ -15,9 +15,10 @@ string xs_replace_char(string str, char x, char y)
 	return str;
 }
 
-string xs_trim(string s)
+string xs_trim(const string& str)
 {
     bool l=true,r=true;
+    string s = str;
     while (s.length()>1 && (l || r))
     {
         l=false; r=false;
@@ -36,17 +37,17 @@ string xs_trim(string s)
     else return s;
 }
 
-vector<string> xs_split(string s, int n)
+vector<string> xs_split(const string& str, int n, char sep)
 {
 	unsigned long p;//int
 	vector<string> ret;
 	int nn = 0;
 	//n--;
     string sub;
-    s = xs_trim(s);
+    string s = xs_trim(str);
 	while (true)
 	{
-		p = s.find_first_of(' ');
+		p = s.find_first_of(sep);
 		if (p == -1 || n == nn)
 		{
             s = xs_trim(s);
@@ -66,9 +67,19 @@ vector<string> xs_split(string s, int n)
 	return ret;
 }
 
+vector<string> xs_split(const string& s, int n)
+{
+    return xs_split(s, n, ' ');
+}
+
 vector<string> xs_split(const string& s)
 {
-	return xs_split(s, INT32_MAX);
+	return xs_split(s, INT32_MAX, ' ');
+}
+
+vector<string> xs_split(const string& s, char sep)
+{
+    return xs_split(s, INT32_MAX, sep);
 }
 //next functions is stolen
 //inline bool __xs_space(char c){return isspace(c);}

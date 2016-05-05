@@ -1,0 +1,25 @@
+#backgrounds; pic - picture, a r g b - alpha red green blue (0 - 127), filaname <id>.<ext>
+#<id> <pic||color> < [scale] || <color>|<r> <g> <b> > [legend_name]
+
+#mapback
+0 color 88:214:236
+#0 color 127:127:127
+
+#extwall
+1 color 80:80:80
+#wall
+2 color 80:80:80
+#door
+3 color 0:255:0
+
+#service
+4 color 128:128:128 Служебные
+
+#class
+5 color 255:182:36 Учебные
+
+#common area
+6 color 250:150:198 Общее
+
+#staf area
+7 color 80:68:255 Рабочее

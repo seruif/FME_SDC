@@ -1,0 +1,4 @@
+#doors
+#<id> <back_id> <def_width|def> <def_height|def>
+
+1 3 def def

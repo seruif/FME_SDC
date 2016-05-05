@@ -333,15 +333,31 @@ XSVectorF xs_fileline_read_next_value_vectorf(string def_key, float def_x, float
 
 int xs_fileline_read_next_value_color()
 {
-	int a = xs_fileline_read_next_value_i();
-	if (xs_fileline_next_value_exist())
+	string as = xs_fileline_read_next_value_s();
+    vector<string> avs = xs_split(as,':');
+    
+    if (avs.size()!=1 && avs.size()!=3)
+        throw runtime_error("error color format");
+    
+    vector<int> avi;
+    for (int i = 0; i<avs.size(); avi.push_back(stoi(avs[i++])));
+    
+    int a = avi[0];
+    int r,g,b;
+	if (avi.size() == 3)
 	{
-		int r = a;// xs_fileline_read_next_value_i();
-		int g = xs_fileline_read_next_value_i();
-		int b = xs_fileline_read_next_value_i();
-		//a *= 16777216;
-        a = r /2 * 128*128 + g/2 * 128 + b/2;
+		r = a;
+        g = avi[1];
+        b = avi[2];
 	}
+    else
+    {
+        b = a % 256;
+        a = a / 256;
+        g = a % 256;
+        r = a / 256;
+    }
+    a = r /2 * 128*128 + g/2 * 128 + b/2;
 	return a;
 }
 //XSVectorI xs_fileline_read_next_value_vectori(string def_key, int def_x, int def_y)

@@ -1,0 +1,252 @@
+#coord - two float value: x y
+
+#v - vertical
+#h - horizontal
+#a - angle
+
+#prefixs
+#l - length
+#p - poly
+
+#-------ROOMS-------
+#rect - adding 4 walls (not recommended); 
+#area - without adding walls
+#larea - coord2 as lengths
+#room <id> <rect <wall_id|def> | area | larea> <coord_1> <coord_2> [fixtext <coord_ofroom>]
+
+#list areas of rooms 
+#roomlist <any_int> <coord> <heigh> <v|h> {<count> - unuse}
+#roomnext list
+#roomnext <id> <width> [fixtext <coord_ofroom>]
+#skip <width>
+#endnext - end of list. MUST BE!
+
+#-------WALLS-------
+#lwall -> coord2 = coord + length
+#doornext - array of position of doors (position begin at <coord>), below lines of doornext
+#doornext list - list of doornext data. count of doornext = doornext array in lwall
+
+#lwall <type_id> <width|def> <coord> <v|h{|a <angle>}> <length> [doornext [[wall_pos]]]	
+#doornext <type_id> <width|def> <high|def>
+
+
+#cwall - simple wall with 2 coords
+#cwall <type_id> <width|def> <coord_1> <coord_2> {[doornext [[wall_pos]]}
+
+#pwall - poly walls. from coord to next coord
+#pwall <type_id> <width|def> <coord_1> [[<coord>]]
+
+#plwall = pwall + lwall
+#plwall <type_id> <width|def> <coord> [[<v|h{|a <angle>}> <length>]]
+
+#walllist - build list of wall. <length> - length of wall
+#like | 	| | | ("v" parameter)
+#coord^	 +offset^
+#walllist <type_id> <width|def> <coord> <v|h> <length> [[<offset>]]
+
+#OLD | NOT RECOMMENED
+#door; def = default, v = vertical, h = horizontal, a = angle (radians)
+#door <type_id> <coord> <v|h{|a <angle>}> <width|def> <high|def>
+
+#--------------------------
+#stair <strip_wall_id> <coord1> <coord2> <v|h> [full]
+#--------------------------
+roomlist 0 24.77 18.60 6.2 h 7
+roomnext 211 9.6
+roomnext 212 2.88
+roomnext 213 12.05
+skip 5.71
+roomnext 214 8.51
+roomnext 215 5.83
+roomnext 216 3.17
+endnext
+
+roomlist 0 0 24 11.5 v 2
+roomnext 1 20.4
+roomnext 207 3.6
+endnext
+
+roomlist 0 18.41 32.75 13 v 2
+roomnext 208 4.05
+roomnext 3 11.5
+endnext
+
+roomlist 0 31.27 8.63 6.33 h 6
+roomnext -4 2.86
+roomnext 219 8.8
+roomnext 218 11.9
+roomnext 217 11.57
+roomnext 21601 2.98
+roomnext 21602 3.1
+endnext
+
+roomlist 0 0 0 5.75 h
+roomnext 20302 2.65
+roomnext 20301 5.52
+roomnext 203 3.49
+roomnext 202 3.45
+roomnext 201 3.42
+roomnext 200 6.10
+endnext
+
+room 204 area 0 8.91 11.5 16
+room 205 area 5.9 16 11.5 21
+room -3 area 0 21.08 11.5 23.83
+
+room -5 area 18.25 18.66 24.75 32.41
+
+#обшивка
+cwall 1 def 0 0 24.87 0
+cwall 1 def 0 0 0 15.9
+cwall 1 def 0 15.9 5.68 15.9
+cwall 1 def 5.95 15.9 5.95 20.85
+cwall 1 def 0 20.85 11.33 20.85
+cwall 1 def 0 20.85 0 48.23
+cwall 1 def 0 23.81 11.33 23.81
+cwall 1 def 0 44.46 11.35 44.46
+cwall 1 def 0 48.23 31.36 48.23
+cwall 1 def 18.31 32.51 31.36 32.51
+cwall 1 def 31.36 32.51 31.36 48.23
+cwall 1 def 18.31 36.56 31.36 36.56
+cwall 1 def 24.81 32.51 24.81 24.72
+cwall 1 def 24.87 0 24.87 5.64
+cwall 1 def 24.87 5.64 31.27 5.64
+cwall 1 def 31.27 5.64 31.27 8.63
+cwall 1 def 31.27 8.63 72.5 8.63
+cwall 1 def 72.5 8.63 72.5 24.83
+cwall 1 def 24.81 24.83 72.5 24.83
+#------
+
+
+#большой коридор верх
+walllist 2 def 24.75 18.46 v 6.37 0 9.6 2.97 12.05 5.71 8.51 3 2.89 3.17
+
+#door in 215
+door 1 66.65 20 v def def
+#reserve right
+stair 4 51.66 18.66 55 24.91 v
+lwall 2 def 51.66 18.58 v 4.8
+
+lwall 2 def 24.81 18.53 h 47.5 doornext 8.19 11.27 13.69 25.62 31.19 42.9 46.02
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+
+lwall 2 def 57.6 21.22 v 3.61
+lwall 2 def 57.6 21.22 h -2.6 doornext -1.3
+doornext 1 def def
+
+lwall 2 def 69.33 22.58 h 3.17 doornext 1.60
+doornext 1 def def
+#------
+
+#большой коридор низ
+lwall 2 def 24.75 14.89 h 47.75 doornext 1 2.2 5.5 8 10.58 19.15 40.5 43.08 46.02
+doornext 1 0.7 def
+doornext 1 0.7 def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+
+walllist 2 def 31.27 8.63 v 6.33 2.86 8.68 12.1 2.84 8.73 2.98
+
+door 1 57.75 13.58 v def def
+
+lwall 2 def 45.1 8.63 v 4
+lwall 2 def 45.1 12.63 h -2.35 doornext -1.175
+doornext 1 def def
+#------
+lwall 2 def 24.75 14.89 v 3.61 doornext 1.86
+doornext 1.5 def def
+#прилифтовые помещения
+walllist 2 def 24.75 14.89 v -0.75 1.5 1.65
+lwall 2 def 24.75 14.14 h 3.2
+
+pwall 2 def 27.98 8.63 31.27 8.63 31.27 14.89
+lwall 2 def 27.98 12.84 h 3.21 doornext 1.6
+doornext 1 def def
+
+#шахта лифта
+pwall 1 def 24.87 8.63 27.98 8.63 27.98 12.84 24.87 12.84
+cwall 1 def 24.87 10.74 27.87 10.74
+lwall 1 def 24.87 8.63 v 6.26 doornext 1.05 3.15
+doornext 1 def def
+doornext 1 def def
+#-------
+
+#несущий поточный коридор
+#лево
+lwall 1 def 11.61 15.9 v 32.33 doornext 3.93 5.8 7.1 9.18 29.5
+doornext 1 0.7 def
+doornext 1 0.7 def
+doornext 1 0.7 def
+doornext 1 def def
+doornext 1 def def
+#право
+lwall 1 def 18.31 32.51 v 15.72 doornext 1.2 8
+doornext 1 def def
+doornext 1 def def
+#-------
+
+#припоточное помещение низ
+lwall 2 def 11.5 22.3 h -6.25
+lwall 2 def 5.17 20.92 v 3.10 doornext 0.68
+doornext 1 0.7 def
+stair 4 8.08 20.83 10.08 23.83 h full
+#-------
+
+#буфет/проход
+lwall 2 def 11.42 18.53 h 13.43 doornext 3.58
+doornext 1 1.2 def
+lwall 2 def 18.25 18.53 v 16.3 doornext 1.63 12.88
+doornext 1 def def
+doornext 1 def def
+
+#левый нижний аварийный/прилигающий верх
+stair 4 0 5.61 5.96 8.9 h
+
+lwall 2 def 5.83 5.75 v 3.08 doornext 1.58
+doornext 1 def def
+
+lwall 2 def 5.67 16 h 5.97
+
+lwall 2 def 2.87 8.83 v 7.17 doornext 1
+doornext 1 def def
+
+lwall 2 def 0 8.83 h 11.5 doornext 10.25
+doornext 1 def def
+
+lwall 2 def 11.5 0 v 16 doornext 4.66 7.33
+doornext 1 def def
+doornext 1 def def
+
+lwall 2 def 0 5.75 h 24.87 doornext 6.91 9.1 14 15.92 19.75
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+#низ
+lwall 2 def 2.65 0 v 5.75 doornext 4.66
+doornext 1 def def
+
+lwall 2 def 8.17 0 v 5.75
+lwall 2 def 15.08 0 v 5.75
+
+lwall 2 def 18.25 0 v 5.75 doornext 4
+doornext 1 def def
+#-------
+
+#main
+stair 4 24.83 5.83 31.16 8.66 h
+
+#main stream
+stair 4 13.5 33.75 16.66 40.33 v full

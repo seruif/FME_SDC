@@ -18,6 +18,7 @@ XSJSONVALUE xs_to_json_value(XSBackgroundType v)
 	jv.add_value("id", v.id);
 	jv.add_value("scale", v.scale);
 	jv.add_value("type", v.type);
+    jv.add_value_string("legend_name", v.legend_name);
 	return jv;
 }
 
@@ -279,6 +280,7 @@ XSJSONVALUE xs_to_json_value(XSBuild v)
 	jv.add_value("id", v.id);
 	jv.add_value_string("name", v.name);
 	xs_to_json_value_add_xsvector(&jv, "coord", v.coord);
+    xs_to_json_value_add_xsvector(&jv, "build_size", v.build_size);
 
 	XSJSONVALUE jvav;
 

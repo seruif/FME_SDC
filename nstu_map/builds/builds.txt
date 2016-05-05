@@ -1,0 +1,6 @@
+#builds info
+
+#coord - two float value: x y
+#<id> <coord> <name>
+
+7 4 4 Факультет автоматики и вычислительной техники

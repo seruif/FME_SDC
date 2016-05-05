@@ -1,0 +1,14 @@
+#walls
+#<id> <back_id> <def_width|def> [strip <factor> <pattern>]
+
+#extwall
+1 1 0.5
+
+#wall
+2 1 def
+
+#strip wall
+3 1 def strip 1 255
+
+#stair
+4 1 def strip 3 43690
