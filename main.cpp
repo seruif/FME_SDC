@@ -85,7 +85,7 @@ int main(int argc, const char * argv[])
     {
         mapi_load_files();
         //mapi_json_file("/Users/Seruif/Documents/MyNSTU-PyServer/static/mynstu/js");
-        mapi_set_map_folder(mapf);
+        mapi_json_file(jsf);
     }
     catch (const exception& e)
     {
