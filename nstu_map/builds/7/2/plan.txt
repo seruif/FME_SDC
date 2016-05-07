@@ -63,7 +63,7 @@ endnext
 
 roomlist 0 0 24 11.5 v 2
 roomnext 1 20.4
-roomnext 207 3.6
+roomnext 220 3.6
 endnext
 
 roomlist 0 18.41 32.75 13 v 2
@@ -91,7 +91,8 @@ endnext
 
 room 204 area 0 8.91 11.5 16
 room 205 area 5.9 16 11.5 21
-room -3 area 0 21.08 11.5 23.83
+room 206 area 0 21.08 5.25 23.83
+room 207 area 5.25 22.25 11.5 23.83
 
 room -5 area 18.25 18.66 24.75 32.41
 
@@ -200,7 +201,7 @@ doornext 1 def def
 lwall 2 def 11.5 22.3 h -6.25
 lwall 2 def 5.17 20.92 v 3.10 doornext 0.68
 doornext 1 0.7 def
-stair 4 8.08 20.83 10.08 23.83 h full
+stair 4 8.08 20.83 10.08 22.25 h full
 #-------
 
 #буфет/проход

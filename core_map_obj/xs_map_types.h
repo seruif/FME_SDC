@@ -255,6 +255,13 @@ public:
     
 	void read()
 	{
+		pic_exts.clear();
+		backgrounds.clear();
+		walls.clear();
+		logos.clear();
+		doors.clear();
+		room_wall = NULL;
+
         read_backgrounds();
 		read_defaults();
 		read_doors();

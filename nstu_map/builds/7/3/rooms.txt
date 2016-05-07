@@ -1,0 +1,33 @@
+#rooms name;
+#room <id> <name>
+#fixtext <room_id> <h{|v}> <coord>
+
+#{logo info; coords from 0 to 1 of room size, def coords - center}
+#{logo <room_id> <logo_id> <coord_x|def> <coord_y|def> [scale]}
+room 307 307
+room 308 308
+room 309 309
+room 310 310
+room 311 311
+room 312 312
+room 313 313
+room 314 314
+
+room 320 320
+room 319 319
+room 318 318
+room 317 317
+room 316 316
+room 315 315
+
+room 304 304
+room 30401 304A
+room 305 GRID
+room 306 306
+
+room 303 303
+room 302 302
+room 301 301
+
+room 0 0
+#info -4 Woman toilet

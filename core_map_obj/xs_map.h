@@ -807,6 +807,8 @@ public:
 
 	void read()
 	{
+		builds.clear();
+
 		xs_openfile(XS_FILE_BUILDS);
 		while (xs_file_readline_split(3))
 		{

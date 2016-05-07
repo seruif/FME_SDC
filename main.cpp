@@ -6,7 +6,7 @@
 //  Created by Валерий Карачаков on 24.02.16.
 //  Copyright © 2016 Валерий Карачаков. All rights reserved.
 //
-#ifdef __WIN32 
+#ifdef _WIN32 
 #include "core_map_gl\xs_main_gl.h"
 #else
 #include "xseruif_mapi.h"
@@ -24,7 +24,7 @@ int main(int argc, const char * argv[])
     string mapf = string(argv[1]);
     string jsf = string(argv[2]);
     
-    #ifdef __WIN32
+    #ifdef _WIN32
     try
     {
         //mapi_set_map_folder("D:\\The_Vault_of_the_Traveler\\Projects\\VS2015\\NSTUMAPGL\\map");
@@ -52,7 +52,7 @@ int main(int argc, const char * argv[])
     //string s = root.toStyledString();
     //xs_map_types.map_scale = 1;
 
-    glutInit(&argc, argv);
+    glutInit(&argc, const_cast<char**>(argv));
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(ww, wh);
     glutInitWindowPosition(50, 50);
@@ -65,6 +65,9 @@ int main(int argc, const char * argv[])
     //glutDisplayFunc(display);
     xsgl_set_winsow_size_var(ww, wh);
     xsgl_init_vars();
+
+	//xsgl_debug_mode(false);
+
     glutDisplayFunc(xsgl_draw_test);
     glutMotionFunc(xsgl_motion);
     glutMouseFunc(xsgl_mouse);

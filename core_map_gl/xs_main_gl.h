@@ -18,6 +18,15 @@ int xsgl_level;
 //	}
 //}
 
+bool debug_mode;
+bool debug_show_name;
+
+void xsgl_debug_mode(bool name)
+{
+	debug_mode = true;
+	debug_show_name = name;
+}
+
 float* xsgl_Color3f(int color)
 {
 	int r, g, b;
@@ -148,13 +157,13 @@ void xsgl_draw_stairs(XSFloor floor, XSVectorF build_pos)
 		glVertex2d(p2.X, p2.Y);
 		glEnd();
 
-		glDisable(GL_LINE_STIPPLE);
+		//glDisable(GL_LINE_STIPPLE);
 
-		glLineWidth(wt->width*xsgl_map_scale());
-		glBegin(GL_LINES);
-		glVertex2d(p1.X, p1.Y);
-		glVertex2d(p2.X, p2.Y);
-		glEnd();
+		//glLineWidth(wt->width*xsgl_map_scale());
+		//glBegin(GL_LINES);
+		//glVertex2d(p1.X, p1.Y);
+		//glVertex2d(p2.X, p2.Y);
+		//glEnd();
 	}
 }
 
@@ -211,8 +220,11 @@ void xsgl_draw_text_of_room(XSRoom r, void* font, XSVectorF build_pos)
 	string s;
 	XSVectorF pos;
 
-	s = r.name;
-	s = s == "" ? s.append(" [").append(to_string(r.id)).append("]") : s;
+	s = "";
+	if (debug_show_name)
+		s = r.name;
+	if (s == "" || debug_mode)
+		s = s.append(" [").append(to_string(r.id)).append("]");
 
 	//pos = r.coord1 + (r.coord2 - r.coord1)*r.room_text_coord + build_pos;
 	pos = r.real_text_coord;
@@ -329,6 +341,9 @@ void xsgl_init_vars()
 
 	mousem.X = 0;
 	mousem.Y = 0;
+
+	debug_mode = false;
+	debug_show_name = true;
 }
 
 void xsgl_motion(int x, int y)
@@ -388,9 +403,32 @@ void xsgl_mouse(int button, int state, int x, int y)
 
 void xsgl_zoom_event(unsigned char key, int x, int y)
 {
+	if (key == 114 || key == 234)
+	{
+		xs_map_types.read();
+		xs_map.read();
+		glutPostRedisplay();
+		return;
+	}
+
+	if (key == 100 || key == 226)
+	{
+		debug_mode = !debug_mode;
+		glutPostRedisplay();
+		return;
+	}
+
+	if (key == 110 || key == 242)
+	{
+		debug_show_name = !debug_show_name;
+		glutPostRedisplay();
+		return;
+	}
+
 	int level = key - 48;
 	if (bbb.floors.find(level) == bbb.floors.end())
 		return;
+
 	xsgl_level = level;
 	float c = 1;
 	if (key == 43)//+
@@ -424,14 +462,14 @@ void xsgl_zoom_event(unsigned char key, int x, int y)
 
 void mouse_pass_moution(int x, int y)
 {
-	mousem.X = ((float)x - xsgl_moution_d.X) / xsgl_map_scale() - bbb.coord.X;
-	mousem.Y = (xsgl_window_size.Y - (float)y - xsgl_moution_d.Y) / xsgl_map_scale() - bbb.coord.Y;
+	mousem.X = ((float)x - xsgl_moution_d.X) / xsgl_map_scale() - 4;// -bbb.coord.X;
+	mousem.Y = (xsgl_window_size.Y - (float)y - xsgl_moution_d.Y) / xsgl_map_scale() - 4;// -bbb.coord.Y;
 	glutPostRedisplay();
 }
 
 void drawBitmapTextMouse(float x, float y)
 {
-	string s = to_string(mousem.X).append(" \r\n ").append(to_string(mousem.Y));
+	string s = to_string(mousem.X).append(" : ").append(to_string(mousem.Y));
 	const char *cc;
 	cc = s.c_str();
 	char* c;
