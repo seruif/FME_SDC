@@ -20,10 +20,15 @@
 
 int main(int argc, const char * argv[])
 {
+    if (argc != 3) cout<<"Parameters error (count != 2)"<<endl;
+    string mapf = string(argv[1]);
+    string jsf = string(argv[2]);
+    
     #ifdef __WIN32
     try
     {
-        mapi_set_map_folder("D:\\The_Vault_of_the_Traveler\\Projects\\VS2015\\NSTUMAPGL\\map");
+        //mapi_set_map_folder("D:\\The_Vault_of_the_Traveler\\Projects\\VS2015\\NSTUMAPGL\\map");
+        mapi_set_map_folder(mapf);
         mapi_set_slash_type(XS_SLASH_WIN);
         mapi_load_files();
     }
@@ -34,7 +39,8 @@ int main(int argc, const char * argv[])
 
     try
     {
-        mapi_json_file("D:\\The_Vault_of_the_Traveler\\Projects\\VS2015\\NSTUMAPGL\\map");
+        //mapi_json_file("D:\\The_Vault_of_the_Traveler\\Projects\\VS2015\\NSTUMAPGL\\map");
+        mapi_json_file(jsf);
     }
     catch (const std::exception& e)
     {
@@ -69,12 +75,14 @@ int main(int argc, const char * argv[])
 
     return 0;
     #else
-    mapi_set_map_folder("/Users/Seruif/Documents/Xcode_Projects/NSTU_MAP_console/NSTU_MAP_console/xs_nstu_map/nstu_map");
+    //mapi_set_map_folder("/Users/Seruif/Documents/Xcode_Projects/NSTU_MAP_console/NSTU_MAP_console/xs_nstu_map/nstu_map");
+    mapi_set_map_folder(mapf);
     string err;
     try
     {
         mapi_load_files();
-        mapi_json_file("/Users/Seruif/Documents/MyNSTU-PyServer/static/mynstu/js");
+        //mapi_json_file("/Users/Seruif/Documents/MyNSTU-PyServer/static/mynstu/js");
+        mapi_set_map_folder(mapf);
     }
     catch (const exception& e)
     {

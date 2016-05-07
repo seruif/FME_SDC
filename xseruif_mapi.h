@@ -61,22 +61,22 @@ void mapi_load_files()
 //	return s;
 //}
 
-void mapi_json_file(string folder)
+void mapi_json_file(string fname)
 {
 	string json_all;
 
 	json_all = xs_all_to_json_value().tostring();
 
-	char c = folder.at(folder.length() - 1);
-	if (c == '/' || c == '\\')
-		folder = folder.substr(0, folder.length() - 1);
-
+//	char c = folder.at(folder.length() - 1);
+//	if (c == '/' || c == '\\')
+//		folder = folder.substr(0, folder.length() - 1);
+//
 	ofstream fout;
-
-	string fname = folder;
-	if (xs_enable_replace_windows) fname = fname.append("\\");
-	else fname = fname.append("/");
-	fname = fname.append("nstu_map.js");
+//
+//	string fname = folder;
+//	if (xs_enable_replace_windows) fname = fname.append("\\");
+//	else fname = fname.append("/");
+//	fname = fname.append("nstu_map.js");
 
 	fout.open(fname, fstream::out);
 	if (fout.fail())
