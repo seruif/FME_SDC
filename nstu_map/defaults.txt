@@ -14,7 +14,7 @@ picture_extensions jpg jpeg png
 
 door 1 0.25
 wall 0.25
-scale 12
+scale 30
 room_wall 2
 background 0
 zoomstep 0.5
