@@ -8,8 +8,14 @@
 #define XS_PRM_ZOOMSTEP "zoomstep"
 #define XS_PRM_SELECTROOM "selectroom"
 //objects
+#define XS_NO_INFO "[NO INFO]"
+#define XS_NO_ASSIGN "[NO ASSIGN]"
+
 #define XS_PRM_ROOM "room"
+#define XS_PRM_NAME "name"
 #define XS_PRM_INFO "info"
+#define XS_PRM_ASSIGN "assign"
+#define XS_PRM_NAAS "naas"
 #define XS_PRM_ROOMLIST "roomlist"
 #define XS_PRM_ROOMNEXT "roomnext"
 #define XS_PRM_ENDNEXT "endnext"

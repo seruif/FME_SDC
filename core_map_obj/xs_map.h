@@ -77,6 +77,7 @@ struct XSRoom
 public:
 	int id;
 	string name;
+    string assign;
 	string info;
 	XSVectorF coord1;
 	XSVectorF coord2;
@@ -242,7 +243,13 @@ struct XSFloor
 						r.id = id;
 						r.coord1 = coord1;
 						r.coord2 = coord2;
-						r.name = "";
+						r.name = to_string(id);
+                        if (id>0)
+                            r.assign = to_string(build_id).append("-").append(to_string(id));
+                        else
+                            r.assign = XS_NO_ASSIGN;
+                            
+                        r.info = XS_NO_INFO;
 						r.room_text_coord.X = 0.5;
 						r.room_text_coord.Y = 0.5;
 						r.back_area = NULL;
@@ -585,16 +592,27 @@ struct XSFloor
 		while (xs_file_readline_prm(2))
 		{
 			rid = xs_fileline_read_next_value_i();
-			if (xs_fileline_prm_is(XS_PRM_ROOM)|| xs_fileline_prm_is(XS_PRM_INFO))
+			if (xs_fileline_prm_is(XS_PRM_NAME))
 			{
-
-				string name = xs_fileline_read_next_value_s();
-				rooms[rid].info = "[NO INFO]";
-				if (xs_fileline_prm_is(XS_PRM_ROOM))
-					rooms[rid].name = name;
-				else
-					rooms[rid].info = name;
+                string name = xs_fileline_read_next_value_s();
+                rooms[rid].name = name;
 			}
+            else if (xs_fileline_prm_is(XS_PRM_INFO))
+            {
+                string info = xs_fileline_read_next_value_s();
+                rooms[rid].info = info;
+            }
+            else if (xs_fileline_prm_is(XS_PRM_ASSIGN))
+            {
+                string assign = xs_fileline_read_next_value_s();
+                rooms[rid].assign = to_string(build_id).append("-").append(assign);
+            }
+            else if (xs_fileline_prm_is(XS_PRM_NAAS))
+            {
+                string naas = xs_fileline_read_next_value_s();
+                rooms[rid].assign = to_string(build_id).append("-").append(naas);
+                rooms[rid].name = naas;
+            }
 			//else if (xs_fileline_prm_is(XS_PRM_LOGO))
 			//{
 			//	XSRoomLogo l;

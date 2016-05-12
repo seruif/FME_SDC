@@ -94,7 +94,7 @@ void mapi_json_file(string fname)
 		//err.append(f);
 		throw runtime_error(err);
 	}
-	json_all = string("function get_map_data(){var data = ").append(json_all).append(";return data;}");
+	//json_all = string("function get_map_data(){var data = ").append(json_all).append(";return data;}");
 	fout << json_all;
 	fout.flush();
 	fout.close();

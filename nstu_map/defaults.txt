@@ -9,7 +9,7 @@
 #scale <f> //recommending more than <?>, when coord in meters
 #background <back_id>
  
-version 0.4
+version 0.4.1
 picture_extensions jpg jpeg png
 
 door 1 0.25

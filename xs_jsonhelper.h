@@ -183,7 +183,8 @@ XSJSONVALUE xs_to_json_value(XSRoom v)
 	jv.add_value("id", v.id);
 	jv.add_value_string("info", v.info);
 	jv.add_value_string("name", v.name);
-	xs_to_json_value_add_xsvector(&jv, "coord1", v.coord1);
+    jv.add_value_string("assign", v.assign);
+    xs_to_json_value_add_xsvector(&jv, "coord1", v.coord1);
 	xs_to_json_value_add_xsvector(&jv, "coord2", v.coord2);
 	xs_to_json_value_add_xsvector(&jv, "real_text_coord", v.real_text_coord);
 	xs_to_json_value_add_xsvector(&jv, "room_text_coord", v.room_text_coord);
