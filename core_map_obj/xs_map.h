@@ -75,6 +75,7 @@ public:
 struct XSRoom
 {
 public:
+    int build_id;
 	int id;
 	string name;
     string assign;
@@ -85,6 +86,18 @@ public:
 	XSBackgroundArea* back_area;
 	XSVectorF room_text_coord;
 	XSVectorF real_text_coord;
+    
+    void set_def_strings(int _build_id)
+    {
+        build_id = _build_id;
+        name = to_string(id);
+        if (id > 0)
+            assign = to_string(build_id).append("-").append(to_string(id));
+        else
+            assign = XS_NO_ASSIGN;
+        
+        info = XS_NO_INFO;
+    }
 };
 
 struct XSBuild;
@@ -241,15 +254,10 @@ struct XSFloor
 							coord2.Y += width;
 
 						r.id = id;
+                        r.set_def_strings(build_id);
+                        
 						r.coord1 = coord1;
 						r.coord2 = coord2;
-						r.name = to_string(id);
-                        if (id>0)
-                            r.assign = to_string(build_id).append("-").append(to_string(id));
-                        else
-                            r.assign = XS_NO_ASSIGN;
-                            
-                        r.info = XS_NO_INFO;
 						r.room_text_coord.X = 0.5;
 						r.room_text_coord.Y = 0.5;
 						r.back_area = NULL;
@@ -314,9 +322,11 @@ struct XSFloor
 					throw xs_error_invalid_key(tpr);
 
 				XSRoom r;
-				//r.back_area = NULL;
-				r.name = "";
+				r.back_area = NULL;
+
 				r.id = id;
+                r.set_def_strings(build_id);
+                
 				r.coord1 = coord1;
 				r.coord2 = coord2;
 				r.room_text_coord.set(0.5f, 0.5f);
