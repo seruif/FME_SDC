@@ -34,7 +34,7 @@ room 7 20301
 room 7 20302
 
 #room 7 205
-room 7 204
+room 5 204
 
 room 7 206
 room 5 207
