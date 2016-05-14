@@ -76,6 +76,8 @@ struct XSRoom
 {
 public:
     int build_id;
+    int floor_id;
+    int level;
 	int id;
 	string name;
     string assign;
@@ -255,6 +257,8 @@ struct XSFloor
 
 						r.id = id;
                         r.set_def_strings(build_id);
+                        r.floor_id = floor_id;
+                        r.level = level;
                         
 						r.coord1 = coord1;
 						r.coord2 = coord2;
@@ -326,6 +330,8 @@ struct XSFloor
 
 				r.id = id;
                 r.set_def_strings(build_id);
+                r.floor_id = floor_id;
+                r.level = level;
                 
 				r.coord1 = coord1;
 				r.coord2 = coord2;

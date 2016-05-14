@@ -182,6 +182,8 @@ XSJSONVALUE xs_to_json_value(XSRoom v)
 	jv.init_as(XS_JSON_TYPE_DIC);
 	jv.add_value("id", v.id);
     jv.add_value("build_id", v.build_id);
+    jv.add_value("floor_id", v.floor_id);
+    jv.add_value("level", v.level);
 	jv.add_value_string("info", v.info);
 	jv.add_value_string("name", v.name);
     jv.add_value_string("assign", v.assign);
