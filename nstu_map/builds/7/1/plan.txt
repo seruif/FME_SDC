@@ -73,7 +73,7 @@ roomnext -4 2.86
 roomnext 112 5.83
 roomnext 111 2.85
 roomnext 110 5.85
-roomnext -1 12.5
+roomnext -1 12.7
 endnext
 
 room -2 area 0 0 11.5 5.58

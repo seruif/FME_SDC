@@ -11,5 +11,4 @@
 #{logo info; coords from 0 to 1 of room size, def coords - center}
 #{logo <room_id> <logo_id> <coord_x|def> <coord_y|def> [scale]}
 
-naas 30401 304A
-name 305 GRID
+name -3 С/У

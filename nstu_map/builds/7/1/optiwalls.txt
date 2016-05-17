@@ -1,3 +1,0 @@
-#COMING SOON
-#File of optimized walls list
-#This file is generated
