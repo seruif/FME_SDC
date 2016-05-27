@@ -8,7 +8,7 @@
 //#include <stdio.h>
 #include <fstream>
 
-#include "xs_processing_string.h"
+#include "xs_string_processing.h"
 using namespace std;
 #define XS_SLASH_UNIX false
 #define XS_SLASH_WIN true

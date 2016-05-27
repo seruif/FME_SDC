@@ -1,4 +1,4 @@
-#include "xs_json.h"
+#include "xs_json_core.h"
 #include "core_map_obj/xs_map.h"
 
 void xs_to_json_value_add_xsvector(XSJSONVALUE* jv, string key, XSVectorF v)
