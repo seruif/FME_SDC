@@ -1,0 +1,14 @@
+﻿#rooms name; if no records, name = id and assign = build_id(always)-id
+#id less 1  - default no assign
+#name <id> <name>
+#info <id> info
+#assign <id> <assign_name>
+#name=assign <id> <name +as assign>
+
+#name = assign
+#naas <id> <name +as assign>
+
+#{logo info; coords from 0 to 1 of room size, def coords - center}
+#{logo <room_id> <logo_id> <coord_x|def> <coord_y|def> [scale]}
+
+name -3 Ж

@@ -1,4 +1,4 @@
-#floors; id = num of floor, first is 1, 0 - underground.
+﻿#floors; id = num of floor, first is 1, 0 - underground.
 #<id> <level> <name>
 
 
@@ -11,3 +11,8 @@
 4 4 Четвертый этаж | Кафедра автоматики
 
 5 5 Пятый этаж
+
+6 6 Шестой этаж
+
+7 7 Седьмой этаж
+

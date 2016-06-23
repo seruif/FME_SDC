@@ -1,0 +1,155 @@
+#coord - two float value: x y
+
+#v - vertical
+#h - horizontal
+#a - angle
+
+#prefixs
+#l - length
+#p - poly
+
+#-------ROOMS-------
+#rect - adding 4 walls (not recommended); 
+#area - without adding walls
+#larea - coord2 as lengths
+#room <id> <rect <wall_id|def> | area | larea> <coord_1> <coord_2> [fixtext <coord_ofroom>]
+
+#list areas of rooms 
+#roomlist <any_int> <coord> <heigh> <v|h> {<count> - unuse}
+#roomnext list
+#roomnext <id> <width> [fixtext <coord_ofroom>]
+#skip <width>
+#endnext - end of list. MUST BE!
+
+#-------WALLS-------
+#lwall -> coord2 = coord + length
+#doornext - array of position of doors (position begin at <coord>), below lines of doornext
+#doornext list - list of doornext data. count of doornext = doornext array in lwall
+
+#lwall <type_id> <width|def> <coord> <v|h{|a <angle>}> <length> [doornext [[wall_pos]]]	
+#doornext <type_id> <width|def> <high|def>
+
+
+#cwall - simple wall with 2 coords
+#cwall <type_id> <width|def> <coord_1> <coord_2> {[doornext [[wall_pos]]}
+
+#pwall - poly walls. from coord to next coord
+#pwall <type_id> <width|def> <coord_1> [[<coord>]]
+
+#plwall = pwall + lwall
+#plwall <type_id> <width|def> <coord> [[<v|h{|a <angle>}> <length>]]
+
+#walllist - build list of wall. <length> - length of wall
+#like | 	| | | ("v" parameter)
+#coord^	 +offset^
+#walllist <type_id> <width|def> <coord> <v|h> <length> [[<offset>]]
+
+#OLD | NOT RECOMMENED
+#door; def = default, v = vertical, h = horizontal, a = angle (radians)
+#door <type_id> <coord> <v|h{|a <angle>}> <width|def> <high|def>
+
+#--------------------------
+#stair <strip_wall_id> <coord1> <coord2> <v|h> [full]
+#--------------------------
+
+#обшивка
+cwall 1 def 0 0 24.87 0
+cwall 1 def 0 0 0 14.9
+cwall 1 def 0 14.9 18.41 14.9
+cwall 1 def 24.87 0 24.87 5.64
+cwall 1 def 24.87 5.64 31.27 5.64
+cwall 1 def 31.27 5.64 31.27 8.63
+cwall 1 def 31.27 8.63 42.93 8.63
+cwall 1 def 42.93 8.63 42.93 24.83
+cwall 1 def 24.81 24.83 42.93 24.83
+lwall 1 def 24.75 18.46 v 6.37
+cwall 1 def 18.41 14.9 18.41 18.41
+cwall 1 def 18.41 18.41 24.75 18.41
+#------
+
+
+#большой коридор верх
+lwall 2 def 31.25 18.46 v 6.37 doornext 2
+doornext 1 def def
+lwall 2 def 34.25 18.46 v 6.37 doornext 1
+doornext 1 def def
+walllist 2 def 24.75 18.46 v 6.37 3.6
+
+lwall 2 def 24.81 18.53 h 18.13 doornext 1.8 5 8
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+
+roomlist 0 24.77 18.60 6.2 h 7
+roomnext 705 3.5
+roomnext 706 3
+roomnext 707 11.7
+endnext
+#------
+
+#большой коридор низ
+lwall 2 def 24.75 14.89 h 18.13 doornext 1 2.2 5.5 8 10.7
+doornext 1 0.7 def
+doornext 1 0.7 def
+doornext 1 def def
+doornext 1 def def
+doornext 1 def def
+
+walllist 2 def 31.27 8.63 v 6.33 3
+
+roomlist 0 31.2 8.63 6.33 h 6
+roomnext -3 3
+roomnext 708 8.7
+endnext
+#------
+lwall 2 def 24.75 14.89 v 3.61 doornext 1.86
+doornext 1.5 def def
+#прилифтовые помещения
+walllist 2 def 24.75 14.89 v -0.75 1.5 1.65
+lwall 2 def 24.75 14.14 h 3.2
+
+pwall 2 def 27.98 8.63 31.27 8.63 31.27 14.89
+lwall 2 def 27.98 12.84 h 3.21 doornext 1.6
+doornext 1 def def
+
+#шахта лифта
+pwall 1 def 24.87 8.63 27.98 8.63 27.98 12.84 24.87 12.84
+cwall 1 def 24.87 10.74 27.87 10.74
+lwall 1 def 24.87 8.63 v 6.26 doornext 1.05 3.15
+doornext 1 def def
+doornext 1 def def
+#-------
+
+#левый нижний аварийный/прилигающий верх
+stair 4 0 5.61 5.96 8.9 h
+
+lwall 2 def 5.83 5.75 v 3.08 doornext 1.58
+doornext 1 def def
+lwall 2 def 18.35 5.75 v 3.08 doornext 1.58
+doornext 1 def def
+
+lwall 2 def 0 8.83 h 18.41 doornext 11 13.7
+doornext 1 def def
+doornext 1 def def
+
+walllist 2 def 0 8.83 v 6.2 12.49 5.86
+
+roomlist 0 0 8.83 5.85 h
+roomnext 703 12.49
+roomnext 704 6
+endnext
+#низ
+lwall 2 def 0 5.75 h 24.87 doornext 11 13.8
+doornext 1 def def
+doornext 1 def def
+
+lwall 2 def 12.49 0 v 5.75
+
+roomlist 0 0 0 5.75 h
+roomnext 701 12.49
+roomnext 702 12.3
+endnext
+#-------
+
+#main
+stair 4 24.83 5.83 31.16 8.66 h
